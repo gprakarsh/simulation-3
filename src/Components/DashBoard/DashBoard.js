@@ -37,7 +37,7 @@ class DashBoard extends Component {
     getPosts = async () => {
         const { id } = this.props
         let { myposts, search } = this.state
-        let postsRes = await axios.get(`/api/posts/${id}/?userposts=${myposts}&search=${search}`)
+        let postsRes = await axios.get(`/api/posts/?userposts=${myposts}&search=${search}`)
         this.setState({
             posts: postsRes.data
         })
@@ -77,10 +77,4 @@ class DashBoard extends Component {
     }
 }
 
-const mapStateToProps = (reduxState) => {
-    return {
-        id: reduxState.id
-    }
-}
-
-export default connect(mapStateToProps)(DashBoard)
+export default DashBoard

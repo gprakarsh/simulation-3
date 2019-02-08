@@ -30,7 +30,7 @@ import axios from 'axios'
             post_image: image,
             post_text: content
         }
-        let creator = await axios.post(`/api/create/post/${id}`,newPost)
+        let creator = await axios.post(`/api/create/post`,newPost)
         this.props.history.push('/dashboard')  
     }
 
@@ -54,4 +54,4 @@ const mapStateToProps = (reduxState) => {
     }
 }
 
-export default connect (mapStateToProps)(Form)
+export default Form

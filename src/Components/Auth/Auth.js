@@ -9,7 +9,7 @@ class Auth extends Component {
         super(props)
         this.state={
         username:'',
-        password:''
+        password:''        
         }
     }
 
@@ -24,7 +24,8 @@ class Auth extends Component {
         const { username, password } = this.state
         try {
             const regRes = await Axios.post(`/auth/register`, { username, password })
-            this.props.updateUser({username})
+            
+            this.props.updateUser(regRes.data)
             this.props.history.push('/dashboard')            
 
         } catch (err) {
@@ -32,6 +33,19 @@ class Auth extends Component {
         }
 
     }
+
+    login = async () => {
+        const { username, password } = this.state
+        try {
+            const loginRes = await Axios.post(`/auth/login`, { username, password })
+            this.props.updateUser(loginRes.data)
+            this.props.history.push('/dashboard')            
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+
     render(){
         const {username,password} = this.state
         const {register,login} = this
@@ -41,7 +55,7 @@ class Auth extends Component {
             <input value={username} type='username' name='username' onChange={this.handleChange} placeholder='Username'/>
             <input value={password} type='password' name='password' onChange={this.handleChange} placeholder='Password'/>
             <div className='buttons'>
-            <button>Login</button>
+            <button onClick={login}>Login</button>
             <button onClick={register}>Register</button>
             </div>
             </div>
