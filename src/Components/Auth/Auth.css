@@ -1,0 +1,12 @@
+.Auth{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction:column;
+    position:relative;
+    top:40vh;
+}
+.buttons{
+    display:flex;
+    flex-direction:row;
+}
